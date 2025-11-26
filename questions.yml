@@ -1,0 +1,251 @@
+# report_year: 
+#   type: date
+#   label: Reporting year
+#   default: lubridate::year()
+# Stock Status and Uncertainty
+stock:
+  type: select
+  label: What stock are you reporting on?
+  options:
+    Acadian redfish: redfish
+    American plaice: plaice
+    Eastern Gulf of Maine cod: egom_cod
+    Georges Bank cod: gb_cod
+    Gulf of Maine cod: gom_cod
+    Southern New England cod: sne_cod
+    Western Gulf of Maine cod: wgom_cod
+    Atlantic halibut: halibut
+    Atlantic herring: herring
+    Atlantic sea scallop: scallop
+    Atlantic wolffish: wolffish
+    Haddock: haddock
+    Northern Monkfish: north_monkfish
+    Southern Monkfish: south_monkfish
+    Ocean pout: ocean_pout
+    Pollock: pollock
+    Red hake: red_hake
+    Silver hake: silver_hake
+    Skate complex: skates
+    Spiny dogfish: spiny_dogfish
+    White hake: white_hake
+    Northern windowpane flounder: north_windowpane_fl
+    Southern windowpane flounder: south_windowpane_fl
+    Georges Bank winter flounder: gb_winter_fl
+    Gulf of Maine winter flounder: gom_winter_fl
+    Southern New England / Mid_Atlantic winter flounder: sne_ma_winter_fl
+    Witch flounder: witch_flounder
+    Georges Bank yellowtail flounder: gb_yellowtail_fl
+    Gulf of Maine / Cape cod yellowtail flounder: gom_cc_yellowtail_fl
+    Southern New England / Mid_Atlantic yellowtail flounder: sne_ma_yellowtail_fl
+  label-select: Choose a stock...
+overfished:
+  type: mc
+  label: Is this stock overfished?
+  options:
+    Yes, it is overfished.: overfished
+    No, it is not overfished.: not_overfished
+    Overfished status is unknown.: unknown
+overfishing:
+  type: mc
+  label: Is this stock experiencing overfishing?
+  options:
+    Yes, overfishing is occurring.: overfished
+    No, overfishing is not occurring.: not_overfished
+    Overfishing status is unknown.: unknown
+
+# rebuilding_target:
+#   type: textarea
+#   label: What is the rebuilding target?
+#   placeholder: Enter a year
+# ssb:
+#   type: text
+#   label: What is the terminal year estimate of SSB in metric tons?
+#   placeholder: "Enter a year"
+# relative_ssb:
+#   type: text
+#   label: What is the percentage of estimated SSB relative to the target SSB?
+#   placeholder: Enter a whole % value
+# recruitment_incl: 
+#   type: mc
+#   label: Is recruitment modeled in the assessment? 
+#   options: 
+#     "Yes": yes
+#     "No": no
+#     Unknown: unknown
+# recruitment_model: 
+#   type: text
+#   label: What is recruitment model used in the assessment?
+# beg_recruit_yr:
+#   type: text
+#   label: What year does the recruitment time series begin?
+#   placeholder: "Enter a year"
+# recruit_year_est_1:
+#   type: text
+#   placeholder: "Enter a year"
+recruit_est_1:
+  type: numeric
+  # label: Enter the recruit estimate value.
+# recruit_year_est_2: 
+#   type: text
+#   placeholder: "Enter a year"
+recruit_est_2:
+  type: numeric
+  # label: Enter the recruit estimate value.
+# recruit_year_est_3: 
+#   type: text
+#   placeholder: "Enter a year"
+recruit_est_3:
+  type: numeric
+  # label: Enter the recruit estimate value.
+# other_recruit_info: 
+#   type: textarea
+#   label: Provide any additional recruitment information that should be considered. 
+#   placeholder: "*i.e. recent changes in recruitment, unavailable data streams, other options for empirical approaches, etc.*"
+assessment_type: 
+  type: mc
+  label: What is the assessment type? 
+  options: 
+    Empirical assessment: empirical
+    Analytical assessment: analytical
+# assessment_model:
+#   type: text
+#   label: What assessment model was used?
+#   placeholder: "i.e. WHAM, ASAP, etc."
+terminal_assess_yr:
+  type: text
+  label: Enter the terminal year of the assessment.
+retro_pattern:
+  type: mc
+  label: Is there a retrospective pattern in the model? 
+  options: 
+    A minor retrospective pattern: minor
+    A major retrospective pattern: major
+    No retrospective pattern: none
+# retro_val:
+#   type: text
+#   label: What is the a retrospective pattern in the model? 
+#   placeholder: "Enter a value."
+data_used: 
+  type: textarea
+  label: List the data used in the assessment.
+missing_data: 
+  type: textarea
+  label: List any _missing_ data from the assessment.
+uncertainty_sources:
+  type: textarea
+  label: List the major sources of uncertainty included in the assessment report.
+
+# Climate and Ecosystem 
+climate_vulnerability: 
+  type: mc
+  label: What is the level of vulnerability of this stock to climate change?
+  options:
+    Low: low
+    Moderate: moderate
+    High: high 
+    Very high: very_high
+climate_direction:
+  type: mc
+  label: What is the directional effect of climate change on this stock?
+  options:
+    Positive directional effect: positive
+    Neutral directional effect: neutral
+    Negative directional effect: negative
+prey_num:
+  type: numeric
+  label: How many prey groups or species is the stock reliant on?
+prey_info:
+  type: textarea
+  label: List any information of the groups and species. 
+fish_condition:
+  type: mc
+  label: What is the stock’s fish condition?
+  options:
+    Good Condition: good
+    Above Average: above_average
+    Neutral: neutral
+    Below Average: below_average
+    Poor Codition: poor
+
+# Economic and Community Importance
+# comm_revenue:
+
+
+# comm_vessel_price:
+
+# total_comm_catch:
+
+# comm_mgmt_uncertain: 
+
+# other_comm_info:
+
+# other_fish_quota:
+#   type: mc
+#   label: Does the fishery rely on quota of another species?
+#   options:
+#     "Yes": yes
+#     "No": no
+other_quota_type: 
+  type: textarea
+  label: List any other quotas the fishery is reliant on for this stock. 
+comm_communities: 
+  type: textarea
+  label: List the top commercial fishing ports at the FMP level.
+recreational_fishery:
+  type: mc
+  label: Is there a recreational fishery for this stock? 
+  options: 
+    "Yes": yes
+    "No": no
+# rec_catch:
+rec_communities:
+  type: textarea
+  label: List the top recreational fishing ports at the FMP level.
+other_econ_info:
+  type: textarea
+  label: Provide any additional socioeconomic information that should be considered. 
+
+# Additional Information 
+# ref_pt_type_1: 
+#   type: mc
+#   label:
+#   options: 
+fmsy_ref_pt:
+  type: numeric
+  label: What is the FMSY reference point?
+# ref_pt_type_2: 
+#   type: mc
+#   label:
+#   options:
+ssb_ref_pt:
+  type: numeric
+  label: What is the SSB_MSY reference point?
+# ref_pt_type_3: 
+#   type: mc
+#   label:
+#   options:
+msy_ref_pt:
+  type: numeric
+  label: What is the MSY reference point?
+ofl:
+  type: numeric
+  label: What was the most recent OFL?
+acct_measure:
+  type: textarea
+  label: What is the accountability measure in place for this stock?
+hcr:
+  type: textarea
+  label: What harvest control rule was used most recently for this stock?
+abc:
+  type: numeric
+  label: What was the most recent ABC?
+# signif_catch_present:
+#   type: mc
+#   label: Is there siginificant catch of this stock in other fisheries (i.e. greater than 5% utilization)?
+#   options:
+#     "Yes": yes
+#     "No": no
+signif_catch_info:
+  type: textarea
+  label: List the fisheries with significant catch and their percent utilization.
+

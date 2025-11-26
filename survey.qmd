@@ -1,0 +1,400 @@
+---
+# General Settings
+format: html
+echo: false
+warning: false
+
+# Theme Settings
+theme: 
+  - flatly
+brand:
+  # logo: images/nefmc_logo.png
+  color:    
+    palette:
+      dark-navy: "#104149"
+      dark-blue: "#1d365e"
+      teal: "#3e9eb6"
+      light-blue: "#92b3e4"
+      orange: "#ef953d"
+      gray: "#7f7f7f"
+    # background: light-blue
+    foreground: dark-navy
+    primary: dark-blue
+    secondary: teal
+    tertiary: gray
+    warning: orange
+  typography:
+    base: 
+      family: Urbanist
+    headings: 
+      family: Source Serif 4
+    link: 
+      color: teal
+barcolor: "#3e9eb6"
+barposition: top
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/template_default)'
+
+# Survey Settings
+survey-settings:
+  show-previous: true
+  use-cookies: false
+  auto-scroll: false
+  rate-survey: false
+  system-language: en
+  highlight-unanswered: true
+  highlight-color: blue
+  capture-metadata: true
+  all-questions-required: false
+  required-questions:
+    - report_year
+    - stock
+    - overfished
+    - overfishing
+    - recruit_incl
+    - assessment_type
+    - retro_pattern
+    - climate_vulnerability
+    - climate_direction
+    - other_fish_quota
+    - signif_catch_present
+
+system-messages:
+  previous: Previous
+  next: Next
+---
+
+```{r}
+library(surveydown)
+library(tidyverse)
+```
+
+::: {.sd_page id=welcome}
+
+<!-- --- page_1 -->
+
+# Risk Policy Matrix
+
+This is a survey for generating risk policy matrices and should be completed by tech staff. It has four pages for each group theme.
+
+```{r report year}
+sd_question(
+  type = "textarea",
+  id = "report_year", 
+  label = "Reporting year", 
+  height = "50px",
+  placeholder = as.character(lubridate::year(lubridate::now()))
+)
+```
+
+```{r stock}
+sd_question("stock")
+```
+
+### Stock Status and Uncertainty Questions
+Using the most recent stock assessment report for your stock, answer the following questions:
+
+#### Biomass Stock Status
+
+```{r overfished}
+sd_question("overfished")
+```
+
+```{r overfishing}
+sd_question("overfishing")
+```
+
+```{r rebuilding}
+# sd_question("rebuilding_plan")
+sd_question(
+  type = "mc",
+  id = "rebuilding_plan", 
+  label = "Is this stock in a rebuilding plan?",
+  options = c(
+    "Yes" = "rebuilding_plan",
+    "No" = "no_rebuilding"
+    )
+)
+```
+
+```{r rebuilding_target}
+sd_question(
+  type = "textarea",
+  id = "rebuilding_target",
+  label = "What is the rebuilding target?",
+  height = "50px",
+  placeholder = "Enter a year"
+  )
+```
+
+```{r ssb target}
+sd_question(
+  type = "textarea",
+  id = "ssb",
+  label = "What is the terminal year estimate of SSB in metric tons?",
+  height = "50px",
+  placeholder = "Enter a year")
+
+sd_question(
+  type = "textarea",
+  id = "relative_ssb",
+  label = "What is the percentage of estimated SSB relative to the target SSB?",
+  height = "50px",
+  placeholder = "Enter a whole % value")
+```
+
+#### Recruitment 
+Recent trends and how recruitment is accounted for in assessment 
+```{r recruitment}
+sd_question(
+  type = "mc",
+  id = "recruit_incl", 
+  label = "Is recruitment modeled in the assessment?",
+  options = c(
+    "Yes" = "yes", 
+    "No" = "no",
+    "Unknown" = "unknown"
+  )
+)
+
+sd_question(
+  type = "textarea",
+  id = "recruitment_model",
+  label = "What is recruitment model used in the assessment?",
+  height = "50px",
+  placeholder = "i.e. Beverton-Holt")
+
+sd_question(
+  type = "textarea",
+  id = "beg_recruit_yr",
+  label = "What year does the recruitment time series begin?",
+  height = "50px",
+  placeholder = "Enter a year"
+)
+```
+
+```{r other recruit}
+sd_question(
+  type = "textarea",
+  id = "other_recruit_info",
+  label = "Provide any additional recruitment information that should be considered. ",
+  placeholder = "i.e. recent changes in recruitment, unavailable data streams, other options for empirical approaches, etc."
+)
+```
+
+#### Assessment Type and Uncertainty 
+
+```{r assessment}
+sd_question("assessment_type")
+
+sd_question(
+  type = "textarea",
+  id = "assessment_model",
+  label = "What assessment model was used?",
+  height = "50px",
+  placeholder = "i.e. WHAM, ASAP, etc."
+)
+
+sd_question("terminal_assess_yr")
+```
+
+```{r retro}
+sd_question("retro_pattern")
+
+sd_question(
+  type = "textarea",
+  id = "retro_val",
+  label = " What is the a retrospective pattern in the model?",
+  height = "50px",
+  placeholder = "Enter a value"
+)
+
+```
+
+```{r data and uncertainty}
+sd_question("data_used")
+sd_question("missing_data")
+sd_question("uncertainty_sources")
+```
+
+:::
+
+<!-- --- additional_assessment_info -->
+::: {.sd_page id=add_recruit_info}
+
+##### Recruitment Estimates 
+Report the most recent three years of recruitment estimates from the model
+
+<!-- recruitment estimate options -->
+::: {.columns}
+::: {.column}
+***Enter three years in the boxes below:***
+```{r recruit years}
+sd_question(
+  type = "textarea",
+  id = "recruit_year_est_1",
+  label = "",
+  height = "50px",
+  placeholder = "Enter a year"
+)
+
+sd_question(
+  type = "textarea",
+  id = "recruit_year_est_2",
+  label = "",
+  height = "50px",
+  placeholder = "Enter a year"
+)
+
+sd_question(
+  type = "textarea",
+  id = "recruit_year_est_3",
+  label = "",
+  height = "50px",
+  placeholder = "Enter a year"
+)
+```
+
+:::
+::: {.column}
+***Enter three estimates in the boxes below:***
+```{r recruit ests}
+sd_question("recruit_est_1")
+sd_question("recruit_est_2")
+sd_question("recruit_est_3")
+```
+
+:::
+::: 
+<!-- end columns -->
+
+```{r}
+# sd_nav()
+```
+
+:::
+
+<!-- --- page_2 -->
+::: {.sd_page id=climate_ecosystem}
+
+### Climate and Ecosystem Questions
+
+#### Climate vulnerability 
+Use [Hare et al. 2016](https://journals.plos.org/plosone/article%3Fid=10.1371/journal.pone.0146756#sec027) to answer the following questions on climate vulnerability for this stock. 
+```{r climate}
+sd_question("climate_vulnerability")
+sd_question("climate_direction")
+```
+
+#### Prey Habits
+Use the [Prey Habits Shiny App](https://fishmaps.shinyapps.io/prey/) to answer the following questions:
+
+```{r prey}
+sd_question("prey_num")
+sd_question("prey_info")
+```
+
+#### Fish Condition 
+Use the most recent State of the Ecosystem reports to answer the following question:
+
+```{r condition}
+sd_question("fish_condition")
+
+# sd_nav()
+```
+
+:::
+
+<!-- --- page_3 -->
+::: {.sd_page id=socioeconomic}
+
+### Economic and Community Importance
+
+Still being developed by the Risk Policy Working Group and the fishery performance report 
+
+```{r other fish}
+sd_question(
+  type = "mc",
+  id = "other_fish_quota", 
+  label = "Does the fishery rely on quota of another species?",
+  options = c(
+    "Yes" = "yes", 
+    "No" = "no"
+    )
+)
+
+sd_question("other_quota_type")
+```
+
+:::
+
+<!-- --- page_4 -->
+::: {.sd_page id=additional}
+### Additional Information
+
+#### Reference Points
+
+<!-- reference point estimates -->
+::: {.columns}
+::: {.column}
+```{r ref pts types}
+
+```
+
+:::
+::: {.column}
+
+```{r ref vals}
+
+```
+
+:::
+::: 
+<!-- end columns -->
+
+
+#### Specifications
+
+```{r specs}
+sd_question("ofl")
+sd_question("abc")
+sd_question("hcr")
+sd_question("acct_measure")
+```
+
+#### Significant Catch 
+
+```{r signif catch}
+sd_question(
+  type = "mc",
+  id = "signif_catch_present", 
+  label = "Is there siginificant catch of this stock in other fisheries *(i.e. greater than 5% utilization)*?",
+  options = c(
+    "Yes" = "yes", 
+    "No" = "no"
+  )
+)
+
+sd_question("signif_catch_info")
+```
+
+```{r}
+# sd_nav()
+```
+
+:::
+
+<!-- --- page_5 -->
+::: {.sd_page id=end}
+## End
+You have completed the matrix. Please click below to exit the survey and download the report.
+
+```{r redirect}
+sd_redirect(id     = "redirect",
+  url    = "https://nefmc-my.sharepoint.com/shared?listurl=https%3A%2F%2Fnefmc%2Esharepoint%2Ecom%2FGPDT%2FDocuments&viewid=81d11365%2D03a6%2D4333%2Dae66%2D18178ad0c83c&id=%2FGPDT%2FDocuments%2F250929%20Groundfish%20PDT%20Meeting%20by%20Webinar%2FRisk%20Policy%20Matrix%2FRisk%20Policy%20Matrix%5FAtlantic%20Wolffish%5FDRAFT%2Epdf&parent=%2FGPDT%2FDocuments%2F250929%20Groundfish%20PDT%20Meeting%20by%20Webinar%2FRisk%20Policy%20Matrix",
+  label  = "Download the matrix report",
+  button = TRUE,
+  newtab = TRUE)
+```
+
+:::
