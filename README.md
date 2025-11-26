@@ -1,13 +1,13 @@
-A minimum template for starting from scratch.
+# Risk Policy Matrix form
 
-To create this template, run this command in your R console:
+A shiny app survey produced for the purposes of completing the risk policy matrices in support of applying the New England Fishery Management Council's (NEFMC) Risk Policy in their decision making. minimum template for starting from scratch.
 
-```r
-surveydown::sd_create_survey(
-  #path = "path/to/survey"
-)
-```
+The app was developed using the [surveydown R package](https://github.com/surveydown-dev/surveydown).
 
-There is a `template = "default"` argument in the `sd_create_survey()` function, but it is set as default so no need to specify it.
+## This code is primarily maintained by:
 
-Refer to the [Start with a template](https://surveydown.org/docs/getting-started#start-with-a-template) section for more details.
+Angelia Miller ([amiller\@nefmc.org](mailto:amiller@nefmc.org))
+
+New England Fishery Management Council
+
+Newburyport, MA 01950
