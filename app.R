@@ -63,7 +63,8 @@ server <- function(input, output, session) {
   )
 
   # Run surveydown server and define database
-  sd_server(db = db)
+  sd_server(db = db, 
+            capture_metadata = FALSE)
 }
 
 # Launch the app
